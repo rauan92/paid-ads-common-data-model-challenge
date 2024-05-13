@@ -1,0 +1,40 @@
+SELECT 
+  --SAFE_DIVIDE(SUM(spend), SUM(clicks + comments + likes + shares + views)) AS cost_per_engage,
+  --SAFE_DIVIDE(SUM(spend), SUM(purchase)) AS conversion_cost,
+  --SUM(impressions) AS impressions,
+  --SAFE_DIVIDE(SUM(spend), SUM(clicks)) AS cpc
+  date,
+  SUM(add_to_cart) AS add_to_cart,
+  SUM(clicks) AS clicks,
+  SUM(comments) AS comments, 
+  SUM(clicks + comments + likes + shares + views) AS engagements,
+  SUM(impressions) AS impressions,
+  SUM(mobile_app_install) AS installs,
+  SUM(likes) AS likes,
+  SUM(inline_link_clicks) AS link_clicks,
+  NULL AS post_click_conversions,
+  NULL AS post_view_conversions,
+  NULL AS posts,
+  SUM(purchase) AS purchase,
+  SUM(complete_registration) AS registrations,
+  NULL AS revenue,
+  SUM(shares) AS shares,
+  SUM(spend) AS spend,
+  SUM(purchase) AS total_conversions,
+  NULL AS video_views,
+  ad_id,
+  adset_id,
+  campaign_id,
+  channel,
+  creative_id,
+  NULL AS placement_id
+FROM {{ ref('src_ads_creative_facebook_all_data') }}
+GROUP BY 
+  date,
+  ad_id,
+  adset_id,
+  campaign_id,
+  channel,
+  creative_id,
+  placement_id
+
