@@ -1,0 +1,37 @@
+SELECT
+    date,
+    NULL AS add_to_cart,
+    SUM(clicks) AS clicks,
+    NULL AS comments, 
+    --SUM(clicks) AS engagements,
+    NULL AS engagements,
+    SUM(imps) AS impressions,
+    NULL AS installs,
+    NULL AS likes,
+    NULL AS link_clicks,
+    NULL AS post_click_conversions,
+    NULL AS post_view_conversions,
+    NULL AS posts,
+    NULL AS purchase,
+    NULL AS registrations,
+    SUM(revenue) AS revenue,
+    NULL AS shares,
+    SUM(spend) AS spend,
+    SUM(conv) AS total_conversions,
+    NULL AS video_views,
+    ad_id,
+    adset_id,
+    campaign_id,
+    channel,
+    NULL AS creative_id,
+    NULL AS placement_id
+FROM {{ ref('src_ads_bing_all_data') }}
+GROUP BY 
+    date,
+    ad_id,
+    adset_id,
+    campaign_id,
+    channel,
+    creative_id,
+    placement_id
+
